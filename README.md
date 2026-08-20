@@ -81,6 +81,16 @@ token = get_access_token(
 
 ---
 
+### Testing Credentials
+
+You can verify your Dev Dashboard credentials and store connection instantly by running the included tester script:
+
+```bash
+python examples/test_credentials.py
+```
+
+---
+
 ### Usage Examples
 
 #### 1. Drop-In Token Helper
