@@ -2,10 +2,9 @@
 
 <img src="https://raw.githubusercontent.com/AhmadHassan-BTed/ShopifyAutoAuth/main/docs/assets/banner-16-9.png" alt="ShopifyAutoAuth Banner" width="100%">
 
-<br><br>
-
+<br>
 # ShopifyAutoAuth
-
+<br>
 ### Enterprise-Grade Shopify OAuth 2.0 Client Credentials Adapter
 
 *A zero-friction, production-hardened bridge connecting legacy Shopify applications to modern Client Credentials Grant authentication.*
