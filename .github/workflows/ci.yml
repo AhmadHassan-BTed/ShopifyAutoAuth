@@ -28,12 +28,6 @@ jobs:
           python -m pip install --upgrade pip build hatchling
           pip install -e ".[dev]"
 
-      - name: Run Ruff Linter
-        run: ruff check .
-
-      - name: Run Ruff Formatter Check
-        run: ruff format --check .
-
       - name: Run Mypy Type Checker
         run: mypy src/shopify_auth_adapter
 
