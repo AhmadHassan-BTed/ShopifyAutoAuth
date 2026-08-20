@@ -32,23 +32,49 @@ Following Shopify's mandatory authentication migration on **January 1, 2026**, s
 pip install shopify-auth-adapter
 ```
 
-### 1. Drop-In Token Helper
+### Setting Up Credentials
 
-Set store credentials in environment variables:
+You can supply your Shopify Dev Dashboard credentials in **any of 3 ways**:
 
+#### Option A: In a `.env` file (Recommended for Local Dev)
+Create a `.env` file in your project root:
+```env
+SHOPIFY_SHOP=your-store.myshopify.com
+SHOPIFY_CLIENT_ID=your_client_id
+SHOPIFY_CLIENT_SECRET=your_client_secret
+```
+
+#### Option B: Environment Variables (Production / Docker / Cloud)
+Set variables in your terminal or deployment environment:
 ```bash
 export SHOPIFY_SHOP="your-store.myshopify.com"
 export SHOPIFY_CLIENT_ID="your_client_id"
 export SHOPIFY_CLIENT_SECRET="your_client_secret"
 ```
 
-Use `get_access_token()` in your code:
+#### Option C: Pass Directly in Python Code
+```python
+from shopify_auth_adapter import get_access_token
+
+token = get_access_token(
+    shop="your-store.myshopify.com",
+    client_id="your_client_id",
+    client_secret="your_client_secret",
+)
+```
+
+---
+
+### Usage Examples
+
+#### 1. Drop-In Token Helper
 
 ```python
 import httpx
 
 from shopify_auth_adapter import get_access_token
 
+# Automatically reads credentials from .env or environment variables:
 headers = {"X-Shopify-Access-Token": get_access_token()}
 response = httpx.get(
     "https://your-store.myshopify.com/admin/api/2026-07/shop.json",
@@ -56,11 +82,12 @@ response = httpx.get(
 )
 ```
 
-### 2. High-Level Shopify Client
+#### 2. High-Level Shopify Client
 
 ```python
 from shopify_auth_adapter import ShopifyClient
 
+# Automatically attaches tokens and retries on 401:
 client = ShopifyClient()
 
 # REST API call
