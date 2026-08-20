@@ -1,21 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
-  <rect width="1280" height="720" fill="#0B0F19"/>
+  <!-- Clean White Background -->
+  <rect width="1280" height="720" fill="#FFFFFF"/>
   
   <g transform="translate(640, 310)" text-anchor="middle">
-    <!-- Minimalist Shopify Bag + Authentication Shield Vector Icon -->
-    <g fill="none" stroke="#95BF47" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
-      <!-- Bag Handles -->
-      <path d="M -30 -40 C -30 -75, 30 -75, 30 -40" />
-      <!-- Shopping Bag Body -->
-      <path d="M -70 -30 L 70 -30 L 85 90 C 85 105, 70 120, 50 120 L -50 120 C -70 120, -85 105, -85 90 Z" fill="#0B0F19" />
-      <!-- Inner Shield / Keyhole -->
-      <path d="M 0 15 L 25 25 L 25 55 C 25 75, 0 88, 0 88 C 0 88, -25 75, -25 55 L -25 25 Z" fill="#95BF47" stroke="none" />
-      <circle cx="0" cy="42" r="6" fill="#0B0F19" stroke="none" />
-      <path d="M 0 42 L 0 62" stroke="#0B0F19" stroke-width="5" />
+    <!-- Authentic 3D Shopify Bag with Shield Emblem -->
+    <g transform="translate(-15, -70)">
+      <!-- Back Handle (Shadowed Green) -->
+      <path d="M -20 -75 C -25 -130 20 -130 22 -75" fill="none" stroke="#5E8E3E" stroke-width="11" stroke-linecap="round" />
+      
+      <!-- Front Handle (Shopify Green) -->
+      <path d="M -48 -65 C -55 -125 -5 -125 0 -65" fill="none" stroke="#95BF47" stroke-width="13" stroke-linecap="round" />
+
+      <!-- Right Side Shadow Face (Dark Green) -->
+      <polygon points="30,-75 105,-50 150,102 35,145" fill="#5E8E3E" />
+      
+      <!-- Top Fold Notch Detail -->
+      <polygon points="30,-75 60,-65 35,145" fill="#4B7431" opacity="0.3" />
+
+      <!-- Main Front Face (Bright Shopify Green) -->
+      <polygon points="-95,-45 30,-75 35,145 -65,108" fill="#95BF47" />
+
+      <!-- White Shield Emblem (Replacing the 'S' logo) -->
+      <g transform="translate(-18, 32) rotate(-5) scale(1.2)">
+        <!-- Crisp White Shield -->
+        <path d="M 0 -42 L 28 -30 C 28 2 20 28 0 45 C -20 28 -28 2 -28 -30 Z" fill="#FFFFFF" />
+        <!-- Keyhole Cutout -->
+        <circle cx="0" cy="-4" r="7" fill="#95BF47" />
+        <polygon points="-4,-4 4,-4 5,16 -5,16" fill="#95BF47" />
+      </g>
     </g>
 
-    <!-- Title & Tagline -->
-    <text y="205" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="2">ShopifyAutoAuth</text>
-    <text y="252" fill="#95BF47" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="500" letter-spacing="4">OAUTH 2.0 CLIENT CREDENTIALS ADAPTER</text>
+    <!-- Main Title (Bold Dark Slate/Black) -->
+    <text y="175" fill="#0F172A" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="58" font-weight="800" letter-spacing="1">ShopifyAutoAuth</text>
+
+    <!-- Subtitle (Clean Grey) -->
+    <text y="220" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" letter-spacing="4">OAUTH 2.0 CLIENT CREDENTIALS ADAPTER</text>
   </g>
 </svg>
