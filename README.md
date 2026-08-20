@@ -24,6 +24,61 @@ Following Shopify's mandatory authentication migration on **January 1, 2026**, s
 
 ---
 
+## Quick Start
+
+### Installation
+
+```bash
+pip install shopify-auth-adapter
+```
+
+### 1. Drop-In Token Helper
+
+Set store credentials in environment variables:
+
+```bash
+export SHOPIFY_SHOP="your-store.myshopify.com"
+export SHOPIFY_CLIENT_ID="your_client_id"
+export SHOPIFY_CLIENT_SECRET="your_client_secret"
+```
+
+Use `get_access_token()` in your code:
+
+```python
+import httpx
+
+from shopify_auth_adapter import get_access_token
+
+headers = {"X-Shopify-Access-Token": get_access_token()}
+response = httpx.get(
+    "https://your-store.myshopify.com/admin/api/2026-07/shop.json",
+    headers=headers,
+)
+```
+
+### 2. High-Level Shopify Client
+
+```python
+from shopify_auth_adapter import ShopifyClient
+
+client = ShopifyClient()
+
+# REST API call
+blogs = client.get("/blogs.json").json()["blogs"]
+
+# GraphQL API call
+shop_info = client.graphql("""
+    query {
+        shop {
+            name
+            email
+        }
+    }
+""")
+```
+
+---
+
 ## Feature Matrix
 
 | Domain | Capability | Architectural Mechanism |
@@ -161,61 +216,6 @@ shopify_auth_adapter_pkg/
 ├── pyproject.toml                 # Packaging & tool configurations (hatchling, ruff, mypy)
 ├── ROADMAP.md                     # Project strategic goals
 └── SUPPORT.md                     # Community help & support guidance
-```
-
----
-
-## Quick Start
-
-### Installation
-
-```bash
-pip install shopify-auth-adapter
-```
-
-### 1. Drop-In Token Helper
-
-Set store credentials in environment variables:
-
-```bash
-export SHOPIFY_SHOP="your-store.myshopify.com"
-export SHOPIFY_CLIENT_ID="your_client_id"
-export SHOPIFY_CLIENT_SECRET="your_client_secret"
-```
-
-Use `get_access_token()` in your code:
-
-```python
-import httpx
-
-from shopify_auth_adapter import get_access_token
-
-headers = {"X-Shopify-Access-Token": get_access_token()}
-response = httpx.get(
-    "https://your-store.myshopify.com/admin/api/2026-07/shop.json",
-    headers=headers,
-)
-```
-
-### 2. High-Level Shopify Client
-
-```python
-from shopify_auth_adapter import ShopifyClient
-
-client = ShopifyClient()
-
-# REST API call
-blogs = client.get("/blogs.json").json()["blogs"]
-
-# GraphQL API call
-shop_info = client.graphql("""
-    query {
-        shop {
-            name
-            email
-        }
-    }
-""")
 ```
 
 ---
