@@ -1,10 +1,8 @@
 <div align="center">
 
-# ShopifyAutoAuth
+<img src="docs/assets/banner.svg" alt="ShopifyAutoAuth Banner" width="100%">
 
-### Enterprise-Grade Shopify OAuth 2.0 Client Credentials Adapter
-
-*A zero-friction, production-hardened bridge connecting legacy Shopify applications to modern Client Credentials Grant authentication.*
+<br><br>
 
 [![CI Status](https://img.shields.io/github/actions/workflow/status/AhmadHassan-BTed/ShopifyAutoAuth/ci.yml?branch=main&style=for-the-badge&logo=github&label=CI)](https://github.com/AhmadHassan-BTed/ShopifyAutoAuth/actions)
 [![PyPI Version](https://img.shields.io/pypi/v/shopify-auth-adapter?style=for-the-badge&logo=pypi&color=2b6cb0)](https://pypi.org/project/shopify-auth-adapter/)

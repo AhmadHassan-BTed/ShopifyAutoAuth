@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#0B0F19"/>
+  
+  <g transform="translate(640, 310)" text-anchor="middle">
+    <!-- Minimalist Shopify Bag + Authentication Shield Vector Icon -->
+    <g fill="none" stroke="#95BF47" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Bag Handles -->
+      <path d="M -30 -40 C -30 -75, 30 -75, 30 -40" />
+      <!-- Shopping Bag Body -->
+      <path d="M -70 -30 L 70 -30 L 85 90 C 85 105, 70 120, 50 120 L -50 120 C -70 120, -85 105, -85 90 Z" fill="#0B0F19" />
+      <!-- Inner Shield / Keyhole -->
+      <path d="M 0 15 L 25 25 L 25 55 C 25 75, 0 88, 0 88 C 0 88, -25 75, -25 55 L -25 25 Z" fill="#95BF47" stroke="none" />
+      <circle cx="0" cy="42" r="6" fill="#0B0F19" stroke="none" />
+      <path d="M 0 42 L 0 62" stroke="#0B0F19" stroke-width="5" />
+    </g>
+
+    <!-- Title & Tagline -->
+    <text y="205" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="2">ShopifyAutoAuth</text>
+    <text y="252" fill="#95BF47" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="500" letter-spacing="4">OAUTH 2.0 CLIENT CREDENTIALS ADAPTER</text>
+  </g>
+</svg>
