@@ -10,11 +10,11 @@ import logging
 import threading
 from typing import Any
 
-from shopify_auth_adapter.auth.provider import OAuth2ClientCredentialsProvider
-from shopify_auth_adapter.auth.proxy import LiveToken
-from shopify_auth_adapter.cache.memory import InMemoryTokenCache
-from shopify_auth_adapter.core.config import ShopifyConfig
-from shopify_auth_adapter.core.protocols import (
+from auth.provider import OAuth2ClientCredentialsProvider
+from auth.proxy import LiveToken
+from cache.memory import InMemoryTokenCache
+from core.config import ShopifyConfig
+from core.protocols import (
     AuthProviderProtocol,
     TokenCacheProtocol,
     TokenManagerProtocol,

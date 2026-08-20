@@ -220,41 +220,16 @@ sequenceDiagram
 
 ```
 ShopifyAutoAuth/
-├── .github/                       # GitHub Actions workflows & community templates
-│   ├── ISSUE_TEMPLATE/            # Structured issue forms (bug_report.yml, etc.)
-│   ├── workflows/                 # CI/CD pipelines (ci.yml, release.yml, security.yml)
-│   ├── dependabot.yml             # Weekly dependency update configuration
-│   └── PULL_REQUEST_TEMPLATE.md   # Standardized pull request template
+├── auth/                          # OAuth2 provider, token manager, LiveToken proxy
+├── cache/                         # In-memory token cache implementation
+├── client/                        # ShopifyClient REST and GraphQL helper
+├── core/                          # Configuration, constants, exceptions, protocols
 ├── docs/                          # In-depth technical documentation
-│   ├── architecture.md            # Domain layout & Mermaid sequence diagrams
-│   ├── system-design.md           # Token lifecycle, clock skew & locking mechanics
-│   ├── security-architecture.md   # Security model & credential masking rules
-│   └── api-reference.md           # Complete public Python API specification
-├── shopify_auth_adapter/          # Primary Python package
-│   ├── __init__.py                # Package facade (100% backward compatible)
-│   ├── py.typed                   # PEP 561 static type marker
-│   ├── core/                      # Core domain (config, constants, exceptions, protocols)
-│   ├── cache/                     # Cache domain (model, memory cache implementation)
-│   ├── auth/                      # Auth domain (OAuth2 provider, manager, LiveToken proxy)
-│   └── client/                    # Client domain (ShopifyClient REST/GraphQL helper)
-├── tests/                         # Test suite
-│   ├── conftest.py                # Global pytest fixtures and mocks
-│   ├── unit/                      # Unit tests grouped by domain module
-│   └── integration/               # End-to-end integration tests
-├── .editorconfig                  # Code formatting guidelines across editors
-├── .env.example                   # Environment configuration template
-├── .gitattributes                 # Git text normalization and path attributes
-├── .gitignore                     # Minimal tracking exclusion rules
-├── CHANGELOG.md                   # Keep a Changelog release history
-├── CODE_OF_CONDUCT.md             # Contributor Covenant Code of Conduct
-├── CONTRIBUTING.md                # Development setup & contributor guidelines
-├── Dockerfile                     # Multi-stage container build file
-├── docker-compose.yml             # Local docker development environment
-├── LICENSE                        # MIT License
-├── Makefile                       # Standardized command shortcuts
-├── pyproject.toml                 # Packaging & tool configurations (hatchling, ruff, mypy)
-├── ROADMAP.md                     # Project strategic goals
-└── SUPPORT.md                     # Community help & support guidance
+├── tests/                         # Unit and integration test suite
+├── .github/                       # GitHub Actions workflows & community templates
+├── __init__.py                    # Top-level API facade
+├── pyproject.toml                 # Packaging & tool configurations
+└── README.md                      # Project overview & documentation
 ```
 
 ---

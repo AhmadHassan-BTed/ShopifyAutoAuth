@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import pytest
 
-from shopify_auth_adapter import ShopifyConfig, _reset_default_manager
+from __init__ import ShopifyConfig, _reset_default_manager
 
 
 @pytest.fixture(autouse=True)

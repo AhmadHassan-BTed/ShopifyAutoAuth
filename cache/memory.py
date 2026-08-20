@@ -9,8 +9,8 @@ from __future__ import annotations
 import threading
 from datetime import datetime, timedelta, timezone
 
-from shopify_auth_adapter.cache.model import CachedToken
-from shopify_auth_adapter.core.protocols import TokenCacheProtocol
+from cache.model import CachedToken
+from core.protocols import TokenCacheProtocol
 
 
 class InMemoryTokenCache(TokenCacheProtocol):

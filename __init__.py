@@ -9,7 +9,7 @@ access tokens that are cached in memory and automatically refreshed before
 expiry.
 """
 
-from shopify_auth_adapter.auth import (
+from auth import (
     LiveToken,
     OAuth2ClientCredentialsProvider,
     TokenManager,
@@ -17,9 +17,9 @@ from shopify_auth_adapter.auth import (
     _reset_default_manager,
     get_access_token,
 )
-from shopify_auth_adapter.cache import CachedToken, InMemoryTokenCache, TokenCache
-from shopify_auth_adapter.client import ShopifyClient
-from shopify_auth_adapter.core import (
+from cache import CachedToken, InMemoryTokenCache, TokenCache
+from client import ShopifyClient
+from core import (
     CLOCK_SKEW_BUFFER_SECONDS,
     CURRENT_API_VERSION,
     AuthProviderProtocol,

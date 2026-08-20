@@ -4,7 +4,7 @@ Unit tests for ShopifyConfig domain object.
 
 import pytest
 
-from shopify_auth_adapter import ShopifyConfig, ShopifyConfigurationError
+from __init__ import ShopifyConfig, ShopifyConfigurationError
 
 
 def test_config_explicit_parameters():

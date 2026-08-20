@@ -5,7 +5,7 @@ Unit tests for OAuth2ClientCredentialsProvider.
 import pytest
 import respx
 
-from shopify_auth_adapter import (
+from __init__ import (
     OAuth2ClientCredentialsProvider,
     ShopifyAuthenticationError,
     ShopifyRateLimitError,

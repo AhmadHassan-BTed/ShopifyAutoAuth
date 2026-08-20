@@ -5,7 +5,7 @@ Unit tests for LiveToken proxy.
 import httpx
 import respx
 
-from shopify_auth_adapter import LiveToken, TokenManager
+from __init__ import LiveToken, TokenManager
 
 
 @respx.mock

@@ -12,13 +12,13 @@ from typing import Any, cast
 
 import httpx
 
-from shopify_auth_adapter.auth.manager import TokenManager, _get_default_manager
-from shopify_auth_adapter.core.config import ShopifyConfig
-from shopify_auth_adapter.core.constants import (
+from auth.manager import TokenManager, _get_default_manager
+from core.config import ShopifyConfig
+from core.constants import (
     DEFAULT_CONNECT_TIMEOUT_SECONDS,
     DEFAULT_HTTP_TIMEOUT_SECONDS,
 )
-from shopify_auth_adapter.core.exceptions import (
+from core.exceptions import (
     ShopifyAPIError,
     ShopifyAuthenticationError,
     ShopifyNetworkError,

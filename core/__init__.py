@@ -2,8 +2,8 @@
 core package facade
 """
 
-from shopify_auth_adapter.core.config import ShopifyConfig
-from shopify_auth_adapter.core.constants import (
+from core.config import ShopifyConfig
+from core.constants import (
     CLOCK_SKEW_BUFFER_SECONDS,
     CURRENT_API_VERSION,
     DEFAULT_AUTH_CONNECT_TIMEOUT_SECONDS,
@@ -11,7 +11,7 @@ from shopify_auth_adapter.core.constants import (
     DEFAULT_CONNECT_TIMEOUT_SECONDS,
     DEFAULT_HTTP_TIMEOUT_SECONDS,
 )
-from shopify_auth_adapter.core.exceptions import (
+from core.exceptions import (
     ShopifyAPIError,
     ShopifyAuthAdapterError,
     ShopifyAuthenticationError,
@@ -19,7 +19,7 @@ from shopify_auth_adapter.core.exceptions import (
     ShopifyNetworkError,
     ShopifyRateLimitError,
 )
-from shopify_auth_adapter.core.protocols import (
+from core.protocols import (
     AuthProviderProtocol,
     TokenCacheProtocol,
     TokenManagerProtocol,

@@ -78,10 +78,15 @@ Changelog = "https://github.com/AhmadHassan-BTed/ShopifyAutoAuth/blob/main/CHANG
 # ---------------------------------------------------------------------------
 
 [tool.hatch.build.targets.wheel]
-packages = ["shopify_auth_adapter"]
+packages = ["core", "cache", "auth", "client"]
 
-[tool.hatch.build.targets.wheel.force-include]
-"shopify_auth_adapter/py.typed" = "shopify_auth_adapter/py.typed"
+[tool.hatch.build.targets.wheel.sources]
+"core" = "shopify_auth_adapter/core"
+"cache" = "shopify_auth_adapter/cache"
+"auth" = "shopify_auth_adapter/auth"
+"client" = "shopify_auth_adapter/client"
+"__init__.py" = "shopify_auth_adapter/__init__.py"
+"py.typed" = "shopify_auth_adapter/py.typed"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -98,8 +103,10 @@ ignore = ["E501"]
 [tool.mypy]
 python_version = "3.10"
 strict = true
+explicit_package_bases = true
+mypy_path = "."
 ignore_missing_imports = true
-files = ["shopify_auth_adapter"]
+files = ["core", "cache", "auth", "client", "__init__.py"]
 
 [[tool.mypy.overrides]]
 module = "tests.*"

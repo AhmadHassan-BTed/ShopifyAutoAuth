@@ -4,7 +4,7 @@ Unit tests for TokenManager.
 
 import respx
 
-from shopify_auth_adapter import TokenManager
+from __init__ import TokenManager
 
 
 @respx.mock

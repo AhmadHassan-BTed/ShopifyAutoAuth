@@ -12,17 +12,17 @@ from typing import Any
 
 import httpx
 
-from shopify_auth_adapter.core.config import ShopifyConfig
-from shopify_auth_adapter.core.constants import (
+from core.config import ShopifyConfig
+from core.constants import (
     DEFAULT_AUTH_CONNECT_TIMEOUT_SECONDS,
     DEFAULT_AUTH_TIMEOUT_SECONDS,
 )
-from shopify_auth_adapter.core.exceptions import (
+from core.exceptions import (
     ShopifyAuthenticationError,
     ShopifyNetworkError,
     ShopifyRateLimitError,
 )
-from shopify_auth_adapter.core.protocols import AuthProviderProtocol
+from core.protocols import AuthProviderProtocol
 
 logger = logging.getLogger(__name__)
 

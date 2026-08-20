@@ -4,8 +4,8 @@ Unit tests for CachedToken and InMemoryTokenCache.
 
 from datetime import datetime, timedelta, timezone
 
-from shopify_auth_adapter.cache import CachedToken, InMemoryTokenCache
-from shopify_auth_adapter.core.constants import CLOCK_SKEW_BUFFER_SECONDS
+from cache import CachedToken, InMemoryTokenCache
+from core.constants import CLOCK_SKEW_BUFFER_SECONDS
 
 
 def test_cached_token_validity():
