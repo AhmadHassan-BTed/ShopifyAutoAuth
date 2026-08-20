@@ -20,7 +20,9 @@ def test_token_manager_caching_behavior(dummy_config):
 
     assert token1 == "tok_cached_1"
     assert token2 == "tok_cached_1"
-    assert route.call_count == 1  # Fetch hit once, second call served from shopify_auth_adapter.cache
+    assert (
+        route.call_count == 1
+    )  # Fetch hit once, second call served from shopify_auth_adapter.cache
 
 
 @respx.mock
