@@ -4,7 +4,7 @@ This document outlines the security invariants and credential protection mechani
 
 ---
 
-## 🔒 Core Security Invariants
+## Core Security Invariants
 
 ### 1. Zero Credential Leakage in Logs & Tracebacks
 Neither client secrets nor access tokens are ever rendered in plain text by `__repr__`, `__str__`, or exception messages.

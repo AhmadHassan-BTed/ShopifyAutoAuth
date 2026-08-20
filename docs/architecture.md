@@ -4,7 +4,7 @@ This document details the architectural layout, design principles, and component
 
 ---
 
-## 🏛️ High-Level Design Principles
+## High-Level Design Principles
 
 `shopify_auth_adapter` is engineered according to enterprise domain-driven architecture standards:
 
@@ -14,7 +14,7 @@ This document details the architectural layout, design principles, and component
 
 ---
 
-## 📦 Package Domain Boundaries
+## Package Domain Boundaries
 
 ```
 shopify_auth_adapter/
@@ -42,7 +42,7 @@ shopify_auth_adapter/
 
 ---
 
-## 🔄 Interaction Sequence Diagram
+## Interaction Sequence Diagram
 
 ```mermaid
 sequenceDiagram
@@ -77,15 +77,13 @@ sequenceDiagram
 
 ---
 
-## 🔑 Key Abstractions & Interfaces
+## Key Abstractions & Interfaces
 
 ### 1. `TokenCacheProtocol` (`shopify_auth_adapter.core.protocols`)
 ```python
 class TokenCacheProtocol(Protocol):
     def get(self) -> Optional[CachedToken]: ...
-    def set(
-        self, access_token: str, expires_in: int, scopes: str = ""
-    ) -> CachedToken: ...
+    def set(self, access_token: str, expires_in: int, scopes: str = "") -> CachedToken: ...
     def invalidate(self) -> None: ...
     def is_valid(self) -> bool: ...
 ```

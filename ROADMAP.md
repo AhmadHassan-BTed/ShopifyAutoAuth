@@ -4,7 +4,7 @@ This document outlines the strategic vision and upcoming milestones for `shopify
 
 ---
 
-## 🎯 Current Milestone: v1.0.0 (Production Stable)
+## Current Milestone: v1.0.0 (Production Stable)
 
 - [x] Full OAuth 2.0 Client Credentials Grant implementation.
 - [x] In-memory thread-safe token caching with clock-skew buffer protection.
@@ -14,7 +14,7 @@ This document outlines the strategic vision and upcoming milestones for `shopify
 
 ---
 
-## 🚀 Near-Term Goals (v1.1.0)
+## Near-Term Goals (v1.1.0)
 
 - [ ] **Async Support (`asyncio`)**: Provide native `AsyncShopifyClient` and `AsyncTokenManager` using `httpx.AsyncClient`.
 - [ ] **Custom Cache Backends**: Provide plugin interface and built-in implementations for external distributed caches (e.g., Redis, Memcached) for multi-process deployments.
@@ -22,7 +22,7 @@ This document outlines the strategic vision and upcoming milestones for `shopify
 
 ---
 
-## 🔭 Future Horizons (v2.0.0)
+## Future Horizons (v2.0.0)
 
 - [ ] Multi-store credential vault manager for SaaS applications handling hundreds of Shopify stores concurrently.
 - [ ] Automated Webhook secret verification helpers.

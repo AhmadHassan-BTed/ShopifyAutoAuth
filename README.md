@@ -16,7 +16,7 @@
 
 </div>
 
-## 🌐 Overview & Human Purpose
+## Overview & Human Purpose
 
 Following Shopify's mandatory authentication migration on **January 1, 2026**, static `shpat_xxx` custom app tokens were deprecated in favor of **OAuth 2.0 Client Credentials Grant** short-lived access tokens (RFC 6749 §4.4).
 
@@ -26,7 +26,7 @@ Existing applications maintain static variable assignment syntax (`SHOPIFY_ACCES
 
 ---
 
-## ⚡ Feature Matrix
+## Feature Matrix
 
 | Domain | Capability | Architectural Mechanism |
 | :--- | :--- | :--- |
@@ -39,7 +39,7 @@ Existing applications maintain static variable assignment syntax (`SHOPIFY_ACCES
 
 ---
 
-## 🏛️ System Architecture & Domain Boundaries
+## System Architecture & Domain Boundaries
 
 The codebase follows domain-driven modularity principles with contract-based interfaces (`Protocol`) to guarantee zero coupling and total separation of concerns.
 
@@ -89,7 +89,7 @@ graph TD
 
 ---
 
-## 🔄 Request Lifecycle & Token Resolution
+## Request Lifecycle & Token Resolution
 
 The diagram below illustrates the exact sequence executed when an HTTP request header formats the `LiveToken` string proxy:
 
@@ -129,7 +129,7 @@ sequenceDiagram
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 shopify_auth_adapter_pkg/
@@ -172,7 +172,7 @@ shopify_auth_adapter_pkg/
 
 ---
 
-## 🚀 Usage Examples
+## Usage Examples
 
 ### 1. Drop-In Helper (`get_access_token`)
 
@@ -216,10 +216,10 @@ shop_data = client.graphql(query)
 
 ---
 
-## 🔍 Technical Deep Dives
+## Technical Deep Dives
 
 <details>
-<summary><b>⏱️ Clock-Skew Math & Expiration Buffer</b></summary>
+<summary><b>Clock-Skew Math & Expiration Buffer</b></summary>
 
 <br />
 
@@ -233,7 +233,7 @@ Any token within 5 minutes of expiration is treated as invalid, forcing a fresh 
 </details>
 
 <details>
-<summary><b>🔒 Security Invariants & Token Masking</b></summary>
+<summary><b>Security Invariants & Token Masking</b></summary>
 
 <br />
 
@@ -246,7 +246,7 @@ Credentials and raw access tokens are strictly protected against unintentional e
 </details>
 
 <details>
-<summary><b>🛠️ Development & Tooling Shortcuts</b></summary>
+<summary><b>Development & Tooling Shortcuts</b></summary>
 
 <br />
 
@@ -267,7 +267,7 @@ make test
 
 ---
 
-## 🛠️ Build & CI/CD Pipeline
+## Build & CI/CD Pipeline
 
 The project utilizes GitHub Actions for continuous quality verification and release automation:
 
@@ -287,7 +287,7 @@ flowchart LR
 
 ---
 
-## 🤝 Maintainer & Community
+## Maintainer & Community
 
 `shopify_auth_adapter` is maintained by **Ahmad Hassan (B-Ted)**.
 
@@ -297,6 +297,6 @@ For security concerns, refer to the disclosure process in [SECURITY.md](SECURITY
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the terms of the [MIT License](LICENSE).

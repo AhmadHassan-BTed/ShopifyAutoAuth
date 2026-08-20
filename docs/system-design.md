@@ -4,7 +4,7 @@ This document provides a deep technical explanation of the token lifecycle mecha
 
 ---
 
-## ⚡ Concurrency & Double-Checked Locking
+## Concurrency & Double-Checked Locking
 
 Under heavy multi-threaded workloads (e.g. web servers handling hundreds of concurrent requests), multiple threads may detect an expired token simultaneously. Without protection, this creates a **thundering herd problem**, where multiple threads perform redundant HTTP requests to Shopify's token endpoint.
 
@@ -30,7 +30,7 @@ def get_token(self) -> str:
 
 ---
 
-## ⏰ Clock-Skew Buffer Protection
+## Clock-Skew Buffer Protection
 
 Shopify Client Credentials Grant access tokens have a fixed lifetime of **86,399 seconds (24 hours)**. 
 
@@ -42,7 +42,7 @@ Any token whose remaining lifespan falls below 300 seconds is automatically trea
 
 ---
 
-## 🔄 Automatic 401 Cache Invalidation & Retry
+## Automatic 401 Cache Invalidation & Retry
 
 If Shopify invalidates or rotates credentials out-of-band, an existing cached token will receive an **HTTP 401 Unauthorized** response from Shopify Admin API.
 
