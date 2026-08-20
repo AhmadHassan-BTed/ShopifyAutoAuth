@@ -42,6 +42,8 @@ SHOPIFY_ACCESS_TOKEN = get_access_token()
 
 ## Quick Start
 
+> 📘 For framework integration examples (FastAPI, Flask, Celery) and detailed error handling, see the **[Developer & Integration Guide](docs/usage-guide.md)**.
+
 ### Installation
 
 ```bash
