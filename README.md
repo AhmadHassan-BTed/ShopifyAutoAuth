@@ -137,24 +137,24 @@ The codebase follows domain-driven modularity principles with contract-based int
 
 ```mermaid
 flowchart TD
-    subgraph Client Application Layer
-        App[Application Codebase]
-        Env[Environment Configuration]
+    subgraph AppLayer["Client Application Layer"]
+        App["Application Codebase"]
+        Env["Environment Config (.env)"]
     end
 
-    subgraph Package Domain
-        Facade[shopify_auth_adapter Facade]
-        Config[Core Domain: ShopifyConfig]
-        Proxy[Auth Domain: LiveToken Proxy]
-        Manager[Auth Domain: TokenManager]
-        Cache[Cache Domain: InMemoryTokenCache]
-        Provider[Auth Domain: OAuth2ClientCredentialsProvider]
-        Client[Client Domain: ShopifyClient]
+    subgraph PkgDomain["shopify_auth_adapter Package"]
+        Facade["API Facade"]
+        Config["ShopifyConfig"]
+        Proxy["LiveToken Proxy"]
+        Manager["TokenManager"]
+        Cache["InMemoryTokenCache"]
+        Provider["OAuth2ClientCredentialsProvider"]
+        Client["ShopifyClient"]
     end
 
-    subgraph External Infrastructure
-        ShopifyAuth[Shopify OAuth Endpoint]
-        ShopifyAPI[Shopify Admin API Endpoint]
+    subgraph ExtInfra["External Infrastructure"]
+        ShopifyAuth["Shopify OAuth Endpoint"]
+        ShopifyAPI["Shopify Admin API"]
     end
 
     Env --> Config
@@ -167,7 +167,6 @@ flowchart TD
     Manager --> Cache
     Manager --> Provider
     Provider --> ShopifyAuth
-    Provider --> Cache
 
     App --> Client
     Client --> Proxy
@@ -183,35 +182,30 @@ The diagram below illustrates the exact sequence executed when an HTTP request h
 ```mermaid
 sequenceDiagram
     autonumber
-    participant Client as Application / HTTP Client
+    participant App as Client Application
     participant Proxy as LiveToken Proxy
     participant Manager as TokenManager
     participant Cache as InMemoryTokenCache
-    participant Provider as OAuth2ClientCredentialsProvider
-    participant Shopify as Shopify OAuth Server
+    participant Provider as OAuth2Provider
+    participant Shopify as Shopify Server
 
-    Client->>Proxy: Header resolution triggers encode method
+    App->>Proxy: Header resolution (.encode)
     Proxy->>Manager: get_token()
     Manager->>Cache: get()
     
-    alt Valid Cached Entry Found
-        Cache-->>Manager: CachedToken Entry
-    else Entry Expired or Absent
-        Manager->>Manager: Acquire refresh lock (Double-Checked Lock)
-        Manager->>Cache: get() [Second Check]
-        alt Fetched by Concurrent Thread
-            Cache-->>Manager: CachedToken Entry
-        else Fetch Required
-            Manager->>Provider: fetch_token()
-            Provider->>Shopify: POST /admin/oauth/access_token
-            Shopify-->>Provider: 200 OK (access_token, expires_in, scope)
-            Provider-->>Manager: (access_token, expires_in, scope)
-            Manager->>Cache: set(access_token, expires_in, scope)
-        end
+    alt Cache Hit (Valid Token)
+        Cache-->>Manager: CachedToken
+    else Cache Miss / Expired
+        Manager->>Manager: Acquire Lock
+        Manager->>Provider: fetch_token()
+        Provider->>Shopify: POST /admin/oauth/access_token
+        Shopify-->>Provider: 200 OK Token Response
+        Provider-->>Manager: access_token
+        Manager->>Cache: set()
     end
     
-    Manager-->>Proxy: Raw Token String
-    Proxy-->>Client: Encoded Token Bytes
+    Manager-->>Proxy: access_token string
+    Proxy-->>App: Encoded Token Bytes
 ```
 
 ---
@@ -292,16 +286,15 @@ The project utilizes GitHub Actions for continuous quality verification and rele
 
 ```mermaid
 flowchart LR
-    Push[Code Push or Tag] --> Lint[Ruff Linter]
-    Push --> TypeCheck[Mypy Strict Check]
-    Push --> Test[Pytest Matrix 3.10-3.13]
+    Push["Code Push / Tag"] --> Lint["Ruff Linter"]
+    Push --> TypeCheck["Mypy Strict Check"]
+    Push --> Test["Pytest Suite"]
     
-    Lint --> Build[Hatchling Build]
+    Lint --> Build["Hatchling Build"]
     TypeCheck --> Build
     Test --> Build
 
-    Build --> OIDC[PyPI Trusted Publisher OIDC]
-    OIDC --> PyPI[Publish to PyPI Registry]
+    Build --> PyPI["Publish to PyPI Registry"]
 ```
 
 ---
