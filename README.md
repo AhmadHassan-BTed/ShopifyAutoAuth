@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/banner.svg" alt="ShopifyAutoAuth Banner" width="100%">
+<img src="docs/assets/banner.png" alt="ShopifyAutoAuth Banner" width="100%">
 
 <br><br>
 
