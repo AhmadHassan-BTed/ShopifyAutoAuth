@@ -35,10 +35,10 @@ jobs:
         run: ruff format --check .
 
       - name: Run Mypy Type Checker
-        run: mypy shopify_auth_adapter
+        run: mypy src/shopify_auth_adapter
 
       - name: Run Pytest Suite with Coverage
-        run: pytest --cov=shopify_auth_adapter --cov-report=xml --cov-report=term-missing
+        run: pytest --cov=src/shopify_auth_adapter --cov-report=xml --cov-report=term-missing
 
       - name: Verify Build
         run: python -m build
