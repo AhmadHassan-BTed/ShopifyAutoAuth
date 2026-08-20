@@ -135,12 +135,15 @@ client = ShopifyClient()
 products = client.get("/products.json").json()["products"]
 
 # REST API POST Request
-new_product = client.post("/products.json", json={
-    "product": {
-        "title": "New Collection Item",
-        "vendor": "Scentspired",
-    }
-}).json()
+new_product = client.post(
+    "/products.json",
+    json={
+        "product": {
+            "title": "New Collection Item",
+            "vendor": "Scentspired",
+        }
+    },
+).json()
 
 # GraphQL Query
 graphql_response = client.graphql("""
@@ -169,6 +172,7 @@ from shopify_auth_adapter import ShopifyClient, ShopifyAuthAdapterError
 app = FastAPI(title="Shopify Integration Service")
 shopify = ShopifyClient()
 
+
 @app.get("/api/products")
 def get_products():
     try:
@@ -187,6 +191,7 @@ from shopify_auth_adapter import ShopifyClient
 app = Flask(__name__)
 shopify = ShopifyClient()
 
+
 @app.route("/shop-info")
 def shop_info():
     res = shopify.get("/shop.json")
@@ -201,6 +206,7 @@ from shopify_auth_adapter import ShopifyClient
 
 celery_app = Celery("tasks", broker="redis://localhost:6379/0")
 shopify = ShopifyClient()
+
 
 @celery_app.task
 def sync_inventory_task():
