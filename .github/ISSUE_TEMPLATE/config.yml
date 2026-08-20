@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: GitHub Discussions
+    url: https://github.com/AhmadHassan-BTed/ShopifyAutoAuth/discussions
+    about: Ask Q&A, discuss architecture, or share project ideas with the community.
+  - name: Security Vulnerability
+    url: https://github.com/AhmadHassan-BTed/ShopifyAutoAuth/security/policy
+    about: Report security issues privately following our security policy.

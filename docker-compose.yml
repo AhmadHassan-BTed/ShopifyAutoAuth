@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    environment:
+      - SHOPIFY_SHOP=my-store.myshopify.com
+      - SHOPIFY_CLIENT_ID=mock_client_id
+      - SHOPIFY_CLIENT_SECRET=mock_client_secret
+    command: pytest -v --cov=shopify_auth_adapter

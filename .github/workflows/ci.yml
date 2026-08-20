@@ -1,0 +1,44 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Test & Quality (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip build hatchling
+          pip install -e ".[dev]"
+
+      - name: Run Ruff Linter
+        run: ruff check .
+
+      - name: Run Ruff Formatter Check
+        run: ruff format --check .
+
+      - name: Run Mypy Type Checker
+        run: mypy shopify_auth_adapter
+
+      - name: Run Pytest Suite with Coverage
+        run: pytest --cov=shopify_auth_adapter --cov-report=xml --cov-report=term-missing
+
+      - name: Verify Build
+        run: python -m build

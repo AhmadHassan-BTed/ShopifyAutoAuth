@@ -1,0 +1,46 @@
+name: Bug Report
+description: Create a report to help us reproduce and fix a bug
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for taking the time to submit a bug report!
+  - type: input
+    id: version
+    attributes:
+      label: shopify_auth_adapter Version
+      description: What version of shopify_auth_adapter are you using?
+      placeholder: e.g. 1.0.0
+    validations:
+      required: true
+  - type: input
+    id: python-version
+    attributes:
+      label: Python Version
+      description: What version of Python are you using?
+      placeholder: e.g. 3.11.4
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem Description
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps To Reproduce
+      description: Minimal code snippet or sequence of steps to reproduce the issue.
+      placeholder: |
+        from shopify_auth_adapter import get_access_token
+        token = get_access_token()
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Exception Traceback / Logs
+      description: Paste any relevant logs or tracebacks here (ensure credentials are scrubbed!).
+      render: shell

@@ -1,0 +1,29 @@
+name: Security Audit
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly on Sunday
+
+jobs:
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install audit tools
+        run: pip install bandit pip-audit
+
+      - name: Run Bandit Security Scanner
+        run: bandit -r shopify_auth_adapter -s B101
+
+      - name: Audit Dependencies
+        run: pip-audit || true
