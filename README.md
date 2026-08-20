@@ -1,6 +1,6 @@
 <div align="center">
 
-# shopify_auth_adapter
+# ShopifyAutoAuth
 
 ### Enterprise-Grade Shopify OAuth 2.0 Client Credentials Adapter
 
@@ -219,7 +219,7 @@ sequenceDiagram
 ## Repository Structure
 
 ```
-shopify_auth_adapter_pkg/
+ShopifyAutoAuth/
 ├── .github/                       # GitHub Actions workflows & community templates
 │   ├── ISSUE_TEMPLATE/            # Structured issue forms (bug_report.yml, etc.)
 │   ├── workflows/                 # CI/CD pipelines (ci.yml, release.yml, security.yml)
