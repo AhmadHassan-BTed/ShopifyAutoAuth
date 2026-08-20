@@ -3,10 +3,12 @@ auth.manager
 ============
 Thread-safe TokenManager implementing double-checked locking token refresh lifecycle.
 """
+
 from __future__ import annotations
 
 import logging
 import threading
+from typing import Any
 
 from shopify_auth_adapter.auth.provider import OAuth2ClientCredentialsProvider
 from shopify_auth_adapter.auth.proxy import LiveToken
@@ -34,12 +36,11 @@ class TokenManager(TokenManagerProtocol):
     """
 
     def __init__(
-
         self,
         config: ShopifyConfig | None = None,
         cache: TokenCacheProtocol | None = None,
         provider: AuthProviderProtocol | None = None,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         if config is not None:
             self.config = config
@@ -100,7 +101,7 @@ class TokenManager(TokenManagerProtocol):
         return token
 
 
-def _get_default_manager(**kwargs) -> TokenManager:
+def _get_default_manager(**kwargs: Any) -> TokenManager:
     """Return (or lazily create) the default singleton TokenManager."""
     global _default_manager
 
@@ -131,7 +132,7 @@ def get_access_token(
     """
     Public entrypoint to retrieve a Shopify access token or LiveToken proxy.
     """
-    kwargs = {
+    kwargs: dict[str, Any] = {
         k: v
         for k, v in {
             "shop": shop,

@@ -1,6 +1,7 @@
 """
 Unit tests for ShopifyConfig domain object.
 """
+
 import pytest
 
 from shopify_auth_adapter import ShopifyConfig, ShopifyConfigurationError
@@ -17,7 +18,9 @@ def test_config_explicit_parameters():
     assert config.client_id == "cid_123"
     assert config.client_secret == "sec_456"
     assert config.api_version == "2026-07"
-    assert config.token_endpoint == "https://my-store.myshopify.com/admin/oauth/access_token"
+    assert (
+        config.token_endpoint == "https://my-store.myshopify.com/admin/oauth/access_token"
+    )
     assert config.admin_api_base == "https://my-store.myshopify.com/admin/api/2026-07"
 
 

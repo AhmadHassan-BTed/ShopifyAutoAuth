@@ -3,6 +3,7 @@ core.config
 ===========
 Configuration value object and validation logic for Shopify authentication.
 """
+
 from __future__ import annotations
 
 import os
@@ -29,9 +30,7 @@ class ShopifyConfig:
     def __post_init__(self) -> None:
         self.shop = self.shop or os.environ.get("SHOPIFY_SHOP")
         self.client_id = self.client_id or os.environ.get("SHOPIFY_CLIENT_ID")
-        self.client_secret = self.client_secret or os.environ.get(
-            "SHOPIFY_CLIENT_SECRET"
-        )
+        self.client_secret = self.client_secret or os.environ.get("SHOPIFY_CLIENT_SECRET")
         self.api_version = (
             self.api_version
             or os.environ.get("SHOPIFY_API_VERSION")

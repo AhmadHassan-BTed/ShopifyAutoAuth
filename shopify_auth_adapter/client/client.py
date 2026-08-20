@@ -3,14 +3,16 @@ client.client
 =============
 ShopifyClient — high-level, authenticated REST and GraphQL Admin API client.
 """
+
 from __future__ import annotations
 
+import contextlib
 import logging
-from typing import Any
+from typing import Any, cast
 
 import httpx
 
-from shopify_auth_adapter.auth.manager import _get_default_manager
+from shopify_auth_adapter.auth.manager import TokenManager, _get_default_manager
 from shopify_auth_adapter.core.config import ShopifyConfig
 from shopify_auth_adapter.core.constants import (
     DEFAULT_CONNECT_TIMEOUT_SECONDS,
@@ -22,7 +24,6 @@ from shopify_auth_adapter.core.exceptions import (
     ShopifyNetworkError,
     ShopifyRateLimitError,
 )
-from shopify_auth_adapter.core.protocols import TokenManagerProtocol
 
 logger = logging.getLogger(__name__)
 
@@ -46,9 +47,9 @@ class ShopifyClient:
         client_secret: str | None = None,
         api_version: str | None = None,
         timeout: httpx.Timeout = _DEFAULT_TIMEOUT,
-        manager: TokenManagerProtocol | None = None,
+        manager: TokenManager | None = None,
     ) -> None:
-        kwargs = {
+        kwargs: dict[str, Any] = {
             k: v
             for k, v in {
                 "shop": shop,
@@ -58,35 +59,31 @@ class ShopifyClient:
             }.items()
             if v is not None
         }
-        self._manager: TokenManagerProtocol = manager or _get_default_manager(
-            **kwargs
-        )
+        self._manager: TokenManager = manager or _get_default_manager(**kwargs)
         self._timeout: httpx.Timeout = timeout
 
     @property
     def config(self) -> ShopifyConfig:
         """The ShopifyConfig instance used by the underlying manager."""
-        if hasattr(self._manager, "config"):
-            return self._manager.config
-        raise AttributeError("TokenManager protocol implementation does not expose config.")
+        return self._manager.config
 
-    def get(self, path: str, **kwargs) -> httpx.Response:
+    def get(self, path: str, **kwargs: Any) -> httpx.Response:
         """Send GET request to Shopify Admin REST API."""
         return self._request("GET", path, **kwargs)
 
-    def post(self, path: str, **kwargs) -> httpx.Response:
+    def post(self, path: str, **kwargs: Any) -> httpx.Response:
         """Send POST request to Shopify Admin REST API."""
         return self._request("POST", path, **kwargs)
 
-    def put(self, path: str, **kwargs) -> httpx.Response:
+    def put(self, path: str, **kwargs: Any) -> httpx.Response:
         """Send PUT request to Shopify Admin REST API."""
         return self._request("PUT", path, **kwargs)
 
-    def patch(self, path: str, **kwargs) -> httpx.Response:
+    def patch(self, path: str, **kwargs: Any) -> httpx.Response:
         """Send PATCH request to Shopify Admin REST API."""
         return self._request("PATCH", path, **kwargs)
 
-    def delete(self, path: str, **kwargs) -> httpx.Response:
+    def delete(self, path: str, **kwargs: Any) -> httpx.Response:
         """Send DELETE request to Shopify Admin REST API."""
         return self._request("DELETE", path, **kwargs)
 
@@ -116,7 +113,8 @@ class ShopifyClient:
                 f"Shopify GraphQL API returned errors: {body['errors']}"
             )
 
-        return body.get("data", body)
+        data = body.get("data", body)
+        return cast(dict[str, Any], data)
 
     def _build_url(self, path: str) -> str:
         base = self.config.admin_api_base
@@ -132,7 +130,7 @@ class ShopifyClient:
         path: str,
         *,
         _retry_on_401: bool = True,
-        **kwargs,
+        **kwargs: Any,
     ) -> httpx.Response:
         url = self._build_url(path)
         caller_headers: dict[str, str] = kwargs.pop("headers", {})
@@ -152,9 +150,7 @@ class ShopifyClient:
                 f"Network error during {method.upper()} {url}: {exc}"
             ) from exc
 
-        logger.debug(
-            "shopify_auth_adapter: ← HTTP %d %s", response.status_code, url
-        )
+        logger.debug("shopify_auth_adapter: ← HTTP %d %s", response.status_code, url)
 
         if response.status_code == 401:
             if _retry_on_401:
@@ -162,9 +158,7 @@ class ShopifyClient:
                     "shopify_auth_adapter: received HTTP 401 — invalidating token cache and retrying once"
                 )
                 self._manager.invalidate()
-                return self._request(
-                    method, path, _retry_on_401=False, **kwargs
-                )
+                return self._request(method, path, _retry_on_401=False, **kwargs)
             raise ShopifyAuthenticationError(
                 f"Shopify returned 401 Unauthorized for {method.upper()} {path} after token refresh."
             )
@@ -178,8 +172,6 @@ class ShopifyClient:
             retry_after: float | None = None
             raw = response.headers.get("Retry-After")
             if raw:
-                import contextlib
-
                 with contextlib.suppress(ValueError):
                     retry_after = float(raw)
             raise ShopifyRateLimitError(

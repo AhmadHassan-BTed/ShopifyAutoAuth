@@ -6,6 +6,7 @@ and management services within shopify_auth_adapter.
 
 Enforces contract-based programming, zero coupling, and complete dependency inversion.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Protocol, runtime_checkable
@@ -22,9 +23,7 @@ class TokenCacheProtocol(Protocol):
         """Return a valid cached token entry if available; None otherwise."""
         ...
 
-    def set(
-        self, access_token: str, expires_in: int, scopes: str = ""
-    ) -> CachedToken:
+    def set(self, access_token: str, expires_in: int, scopes: str = "") -> CachedToken:
         """Store a new token with its expiration lifetime in seconds."""
         ...
 

@@ -1,6 +1,7 @@
 """
 Unit tests for ShopifyClient.
 """
+
 import httpx
 import respx
 

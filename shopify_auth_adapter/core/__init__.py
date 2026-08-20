@@ -1,6 +1,7 @@
 """
 core package facade
 """
+
 from shopify_auth_adapter.core.config import ShopifyConfig
 from shopify_auth_adapter.core.constants import (
     CLOCK_SKEW_BUFFER_SECONDS,

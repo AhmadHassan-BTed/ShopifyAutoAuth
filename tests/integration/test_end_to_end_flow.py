@@ -1,6 +1,7 @@
 """
 Integration end-to-end tests for shopify_auth_adapter.
 """
+
 import respx
 
 from shopify_auth_adapter import ShopifyClient, get_access_token
@@ -10,7 +11,11 @@ from shopify_auth_adapter import ShopifyClient, get_access_token
 def test_end_to_end_drop_in_helper(mock_env):
     respx.post("https://test-store.myshopify.com/admin/oauth/access_token").respond(
         status_code=200,
-        json={"access_token": "e2e_tok_999", "expires_in": 86399, "scope": "read_products"},
+        json={
+            "access_token": "e2e_tok_999",
+            "expires_in": 86399,
+            "scope": "read_products",
+        },
     )
 
     token = get_access_token()

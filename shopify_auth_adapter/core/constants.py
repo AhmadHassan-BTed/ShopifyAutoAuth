@@ -3,6 +3,7 @@ core.constants
 ==============
 System-wide constants and default configurations for shopify_auth_adapter.
 """
+
 from __future__ import annotations
 
 # Latest stable Shopify Admin API version as of August 2026.

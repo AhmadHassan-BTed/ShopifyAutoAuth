@@ -1,6 +1,7 @@
 """
 Unit tests for TokenManager.
 """
+
 import respx
 
 from shopify_auth_adapter import TokenManager

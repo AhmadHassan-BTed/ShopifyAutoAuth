@@ -1,6 +1,7 @@
 """
 auth package facade
 """
+
 from shopify_auth_adapter.auth.manager import (
     TokenManager,
     _get_default_manager,

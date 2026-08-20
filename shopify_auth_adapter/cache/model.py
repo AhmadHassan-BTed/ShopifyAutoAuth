@@ -3,6 +3,7 @@ cache.model
 ===========
 Value object representing a cached access token entry and its expiration metadata.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field

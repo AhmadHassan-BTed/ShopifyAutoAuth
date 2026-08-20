@@ -1,6 +1,7 @@
 """
 Unit tests for OAuth2ClientCredentialsProvider.
 """
+
 import pytest
 import respx
 

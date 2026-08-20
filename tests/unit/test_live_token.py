@@ -1,6 +1,7 @@
 """
 Unit tests for LiveToken proxy.
 """
+
 import httpx
 import respx
 

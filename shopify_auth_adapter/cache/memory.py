@@ -3,6 +3,7 @@ cache.memory
 ============
 Thread-safe, in-memory token cache implementation adhering to TokenCacheProtocol.
 """
+
 from __future__ import annotations
 
 import threading
@@ -37,9 +38,7 @@ class InMemoryTokenCache(TokenCacheProtocol):
     ) -> CachedToken:
         """Store a new token entry with calculated UTC expiration timestamp."""
         with self._lock:
-            expires_at = datetime.now(tz=timezone.utc) + timedelta(
-                seconds=expires_in
-            )
+            expires_at = datetime.now(tz=timezone.utc) + timedelta(seconds=expires_in)
             self._entry = CachedToken(
                 access_token=access_token,
                 expires_at=expires_at,

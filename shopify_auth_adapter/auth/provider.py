@@ -3,9 +3,12 @@ auth.provider
 =============
 HTTP auth provider executing Shopify OAuth 2.0 Client Credentials Grant requests.
 """
+
 from __future__ import annotations
 
+import contextlib
 import logging
+from typing import Any
 
 import httpx
 
@@ -42,7 +45,7 @@ class OAuth2ClientCredentialsProvider(AuthProviderProtocol):
         Fetch a new access token from Shopify.
 
         Returns:
-            Tuple of (access_token, expires_in, scope)
+            Tuple of (access_token, expires_in_seconds, scopes)
 
         Raises:
             ShopifyAuthenticationError: HTTP 401 or 403 response.
@@ -79,10 +82,10 @@ class OAuth2ClientCredentialsProvider(AuthProviderProtocol):
 
         self._handle_response_errors(response)
 
-        data: dict = response.json()
-        access_token: str = data.get("access_token", "")
+        data: dict[str, Any] = response.json()
+        access_token: str = str(data.get("access_token", ""))
         expires_in: int = int(data.get("expires_in", 86399))
-        scopes: str = data.get("scope", "")
+        scopes: str = str(data.get("scope", ""))
 
         if not access_token:
             raise ShopifyAuthenticationError(
@@ -111,8 +114,6 @@ class OAuth2ClientCredentialsProvider(AuthProviderProtocol):
             retry_after: float | None = None
             raw = response.headers.get("Retry-After")
             if raw:
-                import contextlib
-
                 with contextlib.suppress(ValueError):
                     retry_after = float(raw)
             raise ShopifyRateLimitError(

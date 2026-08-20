@@ -16,6 +16,7 @@ Security Invariant
 ------------------
 No exception in this hierarchy will ever expose access tokens or client secrets.
 """
+
 from __future__ import annotations
 
 
@@ -54,8 +55,6 @@ class ShopifyRateLimitError(ShopifyAPIError):
         retry_after: Seconds to wait before retrying, if supplied by Shopify.
     """
 
-    def __init__(
-        self, message: str, retry_after: float | None = None
-    ) -> None:
+    def __init__(self, message: str, retry_after: float | None = None) -> None:
         super().__init__(message)
         self.retry_after = retry_after
