@@ -44,13 +44,13 @@ Existing applications maintain static variable assignment syntax (`SHOPIFY_ACCES
 The codebase follows domain-driven modularity principles with contract-based interfaces (`Protocol`) to guarantee zero coupling and total separation of concerns.
 
 ```mermaid
-graph TD
+flowchart TD
     subgraph Client Application Layer
         App[Application Codebase]
-        Env[Environment / .env File]
+        Env[Environment Configuration]
     end
 
-    subgraph shopify_auth_adapter Package Domain
+    subgraph Package Domain
         Facade[shopify_auth_adapter Facade]
         Config[Core Domain: ShopifyConfig]
         Proxy[Auth Domain: LiveToken Proxy]
@@ -65,26 +65,21 @@ graph TD
         ShopifyAPI[Shopify Admin API Endpoint]
     end
 
-    Env -->|Loads Config| Config
-    App -->|1. Request Token| Facade
-    Facade -->|Instantiates| Manager
-    Manager -->|Injects Config & Cache| Provider
+    Env --> Config
+    App --> Facade
+    Facade --> Manager
+    Manager --> Provider
     
-    App -->|2. Assigns Token| Proxy
-    Proxy -->|3. Delegated .encode()| Manager
-    Manager -->|4. Query Cache| Cache
+    App --> Proxy
+    Proxy --> Manager
+    Manager --> Cache
+    Manager --> Provider
+    Provider --> ShopifyAuth
+    Provider --> Cache
 
-    alt Token Missing or Expired
-        Manager -->|5. Double-Checked Lock| Provider
-        Provider -->|6. POST Credentials| ShopifyAuth
-        ShopifyAuth -->> Provider: 200 OK (access_token, 86399s)
-        Provider -->> Manager: Token Tuple
-        Manager -->|7. Update Entry| Cache
-    end
-
-    App -->|8. Execute REST/GraphQL| Client
-    Client -->|Attach Auth Header| Proxy
-    Client -->|9. HTTP Request| ShopifyAPI
+    App --> Client
+    Client --> Proxy
+    Client --> ShopifyAPI
 ```
 
 ---
@@ -96,35 +91,35 @@ The diagram below illustrates the exact sequence executed when an HTTP request h
 ```mermaid
 sequenceDiagram
     autonumber
-    participant Client as Application / HTTP Client (httpx/requests)
+    participant Client as Application / HTTP Client
     participant Proxy as LiveToken Proxy
     participant Manager as TokenManager
     participant Cache as InMemoryTokenCache
     participant Provider as OAuth2ClientCredentialsProvider
     participant Shopify as Shopify OAuth Server
 
-    Client->>Proxy: encode("latin-1") triggered during header formatting
+    Client->>Proxy: Header resolution triggers encode method
     Proxy->>Manager: get_token()
     Manager->>Cache: get()
     
     alt Valid Cached Entry Found
         Cache-->>Manager: CachedToken Entry
     else Entry Expired or Absent
-        Manager->>Manager: Acquire _refresh_lock (Double-Checked Lock)
+        Manager->>Manager: Acquire refresh lock (Double-Checked Lock)
         Manager->>Cache: get() [Second Check]
         alt Fetched by Concurrent Thread
             Cache-->>Manager: CachedToken Entry
         else Fetch Required
             Manager->>Provider: fetch_token()
             Provider->>Shopify: POST /admin/oauth/access_token
-            Shopify-->>Provider: 200 OK {access_token, expires_in, scope}
+            Shopify-->>Provider: 200 OK (access_token, expires_in, scope)
             Provider-->>Manager: (access_token, expires_in, scope)
             Manager->>Cache: set(access_token, expires_in, scope)
         end
     end
     
     Manager-->>Proxy: Raw Token String
-    Proxy-->>Client: UTF-8 / Latin-1 Encoded Token Bytes
+    Proxy-->>Client: Encoded Token Bytes
 ```
 
 ---
@@ -273,7 +268,7 @@ The project utilizes GitHub Actions for continuous quality verification and rele
 
 ```mermaid
 flowchart LR
-    Push[Code Push / Tag] --> Lint[Ruff Linter]
+    Push[Code Push or Tag] --> Lint[Ruff Linter]
     Push --> TypeCheck[Mypy Strict Check]
     Push --> Test[Pytest Matrix 3.10-3.13]
     
@@ -281,7 +276,7 @@ flowchart LR
     TypeCheck --> Build
     Test --> Build
 
-    Build -->|Tag Push v*| OIDC[PyPI Trusted Publisher OIDC]
+    Build --> OIDC[PyPI Trusted Publisher OIDC]
     OIDC --> PyPI[Publish to PyPI Registry]
 ```
 
