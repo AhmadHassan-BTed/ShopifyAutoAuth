@@ -282,16 +282,18 @@ flowchart LR
 
 ---
 
-## Maintainer & Community
-
-`shopify_auth_adapter` is maintained by **Ahmad Hassan (B-Ted)**.
-
-Contributions from the open-source community are welcomed. Please review [CONTRIBUTING.md](CONTRIBUTING.md) for development setup instructions and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community standards.
-
-For security concerns, refer to the disclosure process in [SECURITY.md](SECURITY.md).
-
----
-
 ## License
 
 This project is licensed under the terms of the [MIT License](LICENSE).
+
+---
+
+<div align="center">
+
+### Engineered & Maintained by Ahmad Hassan (B-Ted)
+
+*Connecting legacy systems to modern authentication with zero friction.*
+
+[GitHub Profile](https://github.com/AhmadHassan-BTed) • [PyPI Package](https://pypi.org/project/shopify-auth-adapter/) • [LinkedIn](https://www.linkedin.com/in/ahmad-hassan-52ab4225b/)
+
+</div>
