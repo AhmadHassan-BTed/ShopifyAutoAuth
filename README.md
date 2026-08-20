@@ -2,14 +2,13 @@
 
 <img src="https://raw.githubusercontent.com/AhmadHassan-BTed/ShopifyAutoAuth/main/docs/assets/banner-16-9.png" alt="ShopifyAutoAuth Banner" width="100%">
 
-<br>
-# ShopifyAutoAuth
-<br>
-### Enterprise-Grade Shopify OAuth 2.0 Client Credentials Adapter
+<h1 align="center">ShopifyAutoAuth</h1>
 
-*A zero-friction, production-hardened bridge connecting legacy Shopify applications to modern Client Credentials Grant authentication.*
+<h3 align="center">Enterprise-Grade Shopify OAuth 2.0 Client Credentials Adapter</h3>
 
-<br>
+<p align="center">
+  <em>A zero-friction, production-hardened bridge connecting legacy Shopify applications to modern Client Credentials Grant authentication.</em>
+</p>
 
 [![CI Status](https://img.shields.io/github/actions/workflow/status/AhmadHassan-BTed/ShopifyAutoAuth/ci.yml?branch=main&style=for-the-badge&logo=github&label=CI)](https://github.com/AhmadHassan-BTed/ShopifyAutoAuth/actions)
 [![PyPI Version](https://img.shields.io/pypi/v/shopify-auth-adapter?style=for-the-badge&logo=pypi&color=2b6cb0)](https://pypi.org/project/shopify-auth-adapter/)
