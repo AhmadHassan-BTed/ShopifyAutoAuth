@@ -14,10 +14,10 @@ from shopify_auth_adapter import get_access_token
 
 token = get_access_token(
     shop="my-store.myshopify.com",  # Optional (falls back to SHOPIFY_SHOP env var)
-    client_id="...",                 # Optional (falls back to SHOPIFY_CLIENT_ID env var)
-    client_secret="...",             # Optional (falls back to SHOPIFY_CLIENT_SECRET env var)
-    api_version="2026-07",           # Optional (defaults to CURRENT_API_VERSION)
-    live=True                        # Return LiveToken proxy (default True) or plain str
+    client_id="...",  # Optional (falls back to SHOPIFY_CLIENT_ID env var)
+    client_secret="...",  # Optional (falls back to SHOPIFY_CLIENT_SECRET env var)
+    api_version="2026-07",  # Optional (defaults to CURRENT_API_VERSION)
+    live=True,  # Return LiveToken proxy (default True) or plain str
 )
 ```
 
@@ -49,7 +49,9 @@ Manages token lifecycle, caching, and double-checked refresh mechanics.
 ```python
 from shopify_auth_adapter import TokenManager, ShopifyConfig
 
-config = ShopifyConfig(shop="my-store.myshopify.com", client_id="...", client_secret="...")
+config = ShopifyConfig(
+    shop="my-store.myshopify.com", client_id="...", client_secret="..."
+)
 manager = TokenManager(config=config)
 
 token_str = manager.get_token()
