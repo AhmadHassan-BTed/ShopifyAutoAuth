@@ -28,21 +28,18 @@ Following Shopify's mandatory authentication migration on **January 1, 2026**, s
 
 ### Migration: Before vs After
 
-```python
-# BEFORE (Deprecated static token):
-SHOPIFY_ACCESS_TOKEN = "shpat_xxxxxxxxxxxxxxxxxxxxxxxx"
+## ⚡ Quick Start: 1 Line of Code
 
-# AFTER (Automatic OAuth 2.0 token with auto-refresh):
+To upgrade any Python application to Shopify's modern OAuth 2.0 authentication, replace your deprecated `shpat_xxx` string with **`get_access_token()`**:
+
+```python
 from shopify_auth_adapter import get_access_token
 
+# Automatically fetches, caches in RAM, and auto-refreshes OAuth 2.0 tokens:
 SHOPIFY_ACCESS_TOKEN = get_access_token()
 ```
 
----
-
-## Quick Start
-
-> 📘 For framework integration examples (FastAPI, Flask, Celery) and detailed error handling, see the **[Developer & Integration Guide](docs/usage-guide.md)**.
+That's it! Everything else (OAuth 2.0 requests, RAM caching, automatic 24h refresh) happens automatically behind the scenes.
 
 ### Installation
 

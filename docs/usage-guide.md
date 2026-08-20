@@ -23,11 +23,17 @@
 
 ---
 
-## Overview
+## ⚡ The 1-Line Solution
 
-Following Shopify's **January 1, 2026** mandatory migration, static `shpat_xxx` tokens were deprecated in favor of short-lived OAuth 2.0 access tokens.
+To upgrade any Python application to Shopify's modern OAuth 2.0 authentication, replace your old `shpat_xxx` string with **`get_access_token()`**:
 
-`shopify_auth_adapter` acts as a transparent authentication proxy. It automatically requests, caches in volatile RAM, and refreshes OAuth 2.0 tokens before expiration without interrupting your application logic.
+```python
+from shopify_auth_adapter import get_access_token
+
+SHOPIFY_ACCESS_TOKEN = get_access_token()
+```
+
+That's it! Everything else (fetching tokens via OAuth 2.0, storing in RAM, auto-refreshing before 24-hour expiration) happens automatically.
 
 ---
 
