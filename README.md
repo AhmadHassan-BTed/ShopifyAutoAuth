@@ -20,7 +20,19 @@
 
 Following Shopify's mandatory authentication migration on **January 1, 2026**, static `shpat_xxx` custom app tokens were deprecated in favor of **OAuth 2.0 Client Credentials Grant** short-lived access tokens (RFC 6749 §4.4).
 
-`shopify_auth_adapter` provides a transparent authentication proxy. Applications maintain static variable access syntax (`SHOPIFY_ACCESS_TOKEN = get_access_token()`), while under the hood tokens are acquired, cached in volatile memory, and refreshed prior to expiration without runtime interruption.
+`shopify_auth_adapter` provides a transparent authentication proxy. Existing applications can preserve their variable assignment patterns while under the hood tokens are acquired, cached in volatile RAM, and refreshed prior to expiration without runtime interruption.
+
+### Migration: Before vs After
+
+```python
+# BEFORE (Deprecated static token):
+SHOPIFY_ACCESS_TOKEN = "shpat_xxxxxxxxxxxxxxxxxxxxxxxx"
+
+# AFTER (Automatic OAuth 2.0 token with auto-refresh):
+from shopify_auth_adapter import get_access_token
+
+SHOPIFY_ACCESS_TOKEN = get_access_token()
+```
 
 ---
 
