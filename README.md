@@ -28,6 +28,18 @@ Following Shopify's mandatory authentication migration on **January 1, 2026**, s
 
 ### Migration: Before vs After
 
+```python
+# BEFORE (Deprecated static token):
+SHOPIFY_ACCESS_TOKEN = "shpat_xxxxxxxxxxxxxxxxxxxxxxxx"
+
+# AFTER (Automatic OAuth 2.0 token with auto-refresh):
+from shopify_auth_adapter import get_access_token
+
+SHOPIFY_ACCESS_TOKEN = get_access_token()
+```
+
+---
+
 ## ⚡ Quick Start: 1 Line of Code
 
 To upgrade any Python application to Shopify's modern OAuth 2.0 authentication, replace your deprecated `shpat_xxx` string with **`get_access_token()`**:
