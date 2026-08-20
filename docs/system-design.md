@@ -36,7 +36,7 @@ Shopify Client Credentials Grant access tokens have a fixed lifetime of **86,399
 
 To prevent edge cases where a token is valid when read from cache but expires while the HTTP request is in transit across the network, `shopify_auth_adapter` enforces a **300-second (5-minute) proactive clock-skew buffer**:
 
-$$\text{Expiration Cutoff} = T_{\text{expires\_at}} - 300\text{ seconds}$$
+$$\text{Expiration Cutoff} = T_{\text{expiry}} - 300\text{ seconds}$$
 
 Any token whose remaining lifespan falls below 300 seconds is automatically treated as expired, triggering a background refresh before application requests fail.
 

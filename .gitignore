@@ -6,12 +6,14 @@
 # Python compilation and cache
 __pycache__/
 *.py[cod]
+*$py.class
 *.so
 
 # Build and distribution artifacts
 build/
 dist/
 *.egg-info/
+*.egg
 *.whl
 *.tar.gz
 
@@ -19,16 +21,23 @@ dist/
 venv/
 .venv/
 env/
+ENV/
 
 # Test, coverage and linters
 .coverage
+.coverage.*
 htmlcov/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.hypothesis/
+.tox/
 
-# IDE and OS artifacts
+# IDE, OS and editor artifacts
 .vscode/
 .idea/
 .DS_Store
+Thumbs.db
 *.swp
+*.swo
+*~

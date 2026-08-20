@@ -222,7 +222,7 @@ Shopify Client Credentials Grant tokens carry a fixed duration of **86,399 secon
 
 To prevent edge cases where a token is valid when read from cache but expires while in flight across the network, the expiration cutoff is calculated as:
 
-$$\text{Cutoff} = T_{\text{expires\_at}} - 300\text{ seconds}$$
+$$\text{Cutoff} = T_{\text{expiry}} - 300\text{ seconds}$$
 
 Any token within 5 minutes of expiration is treated as invalid, forcing a fresh token fetch prior to request dispatch.
 </details>
