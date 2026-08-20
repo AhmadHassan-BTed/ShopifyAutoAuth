@@ -5,7 +5,7 @@ Unit tests for ShopifyClient.
 import httpx
 import respx
 
-from __init__ import ShopifyClient
+from shopify_auth_adapter import ShopifyClient
 
 
 @respx.mock

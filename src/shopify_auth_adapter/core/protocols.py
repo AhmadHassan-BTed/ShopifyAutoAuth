@@ -12,7 +12,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Protocol, runtime_checkable
 
 if TYPE_CHECKING:
-    from cache.model import CachedToken
+    from shopify_auth_adapter.cache.model import CachedToken
 
 
 @runtime_checkable

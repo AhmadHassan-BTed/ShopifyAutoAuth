@@ -9,7 +9,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 
-from core.constants import CLOCK_SKEW_BUFFER_SECONDS
+from shopify_auth_adapter.core.constants import CLOCK_SKEW_BUFFER_SECONDS
 
 
 @dataclass

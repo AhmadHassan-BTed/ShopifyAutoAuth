@@ -10,7 +10,7 @@ from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, SupportsIndex
 
 if TYPE_CHECKING:
-    from core.protocols import TokenManagerProtocol
+    from shopify_auth_adapter.core.protocols import TokenManagerProtocol
 
 
 class LiveToken(str):

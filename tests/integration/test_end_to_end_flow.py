@@ -4,7 +4,7 @@ Integration end-to-end tests for shopify_auth_adapter.
 
 import respx
 
-from __init__ import ShopifyClient, get_access_token
+from shopify_auth_adapter import ShopifyClient, get_access_token
 
 
 @respx.mock

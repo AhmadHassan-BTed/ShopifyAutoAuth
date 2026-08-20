@@ -9,8 +9,8 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass, field
 
-from core.constants import CURRENT_API_VERSION
-from core.exceptions import ShopifyConfigurationError
+from shopify_auth_adapter.core.constants import CURRENT_API_VERSION
+from shopify_auth_adapter.core.exceptions import ShopifyConfigurationError
 
 
 @dataclass

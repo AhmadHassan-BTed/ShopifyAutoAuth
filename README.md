@@ -220,14 +220,15 @@ sequenceDiagram
 
 ```
 ShopifyAutoAuth/
-├── auth/                          # OAuth2 provider, token manager, LiveToken proxy
-├── cache/                         # In-memory token cache implementation
-├── client/                        # ShopifyClient REST and GraphQL helper
-├── core/                          # Configuration, constants, exceptions, protocols
+├── src/
+│   └── shopify_auth_adapter/      # Primary Python package
+│       ├── auth/                  # OAuth2 provider, token manager, LiveToken proxy
+│       ├── cache/                 # In-memory token cache implementation
+│       ├── client/                # ShopifyClient REST and GraphQL helper
+│       └── core/                  # Configuration, constants, exceptions, protocols
 ├── docs/                          # In-depth technical documentation
 ├── tests/                         # Unit and integration test suite
 ├── .github/                       # GitHub Actions workflows & community templates
-├── __init__.py                    # Top-level API facade
 ├── pyproject.toml                 # Packaging & tool configurations
 └── README.md                      # Project overview & documentation
 ```
