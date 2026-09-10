@@ -332,7 +332,7 @@ This project is licensed under the terms of the [MIT License](LICENSE).
 
 <div align="center">
 
-**Engineered by Ahmad Hassan (B-Ted)**
+**Engineered by Ahmad Hassan (B-Ted) 💚**
 
 [GitHub Profile](https://github.com/AhmadHassan-BTed) • [PyPI Package](https://pypi.org/project/shopify-auth-adapter/) • [LinkedIn](https://www.linkedin.com/in/ahmad-hassan-52ab4225b/)
 
